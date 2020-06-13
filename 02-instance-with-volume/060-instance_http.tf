@@ -9,10 +9,10 @@ data "openstack_images_image_v2" "centos_current" {
 # Create instance
 #
 resource "openstack_compute_instance_v2" "http" {
-  name        = "http-instance-2"
+  name        = "http-instance"
   image_name  = var.image
   flavor_name = var.flavor_http
-  key_pair    = openstack_compute_keypair_v2.user_key.name
+  key_pair    = "jinho_key"
   user_data   = file("scripts/first-boot.sh")
   network {
     port = openstack_networking_port_v2.http.id
