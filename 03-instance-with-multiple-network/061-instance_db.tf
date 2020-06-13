@@ -7,7 +7,7 @@ resource "openstack_compute_instance_v2" "db" {
   name        = each.key
   image_name  = var.image
   flavor_name = var.flavor_db
-  key_pair    = var.public_key
+  key_pair    = data.openstack_compute_keypair_v2.user_key.name
   user_data   = file("scripts/first-boot.sh")
   network {
     port = openstack_networking_port_v2.db[each.key].id
@@ -18,11 +18,11 @@ resource "openstack_compute_instance_v2" "db" {
 resource "openstack_networking_port_v2" "db" {
   for_each       = var.db_instance_names
   name           = "port-db-${each.key}"
-  network_id     = openstack_networking_network_v2.generic.id
+  network_id     = openstack_networking_network_v2.vpc.id
   admin_state_up = true
   security_group_ids = [
-    openstack_compute_secgroup_v2.ssh.id,
-    openstack_compute_secgroup_v2.db.id,
+    data.openstack_networking_secgroup_v2.ssh.id,
+    data.openstack_networking_secgroup_v2.db.id,
   ]
   fixed_ip {
     subnet_id = openstack_networking_subnet_v2.db.id
@@ -32,7 +32,7 @@ resource "openstack_networking_port_v2" "db" {
 # Create floating ip
 resource "openstack_networking_floatingip_v2" "db" {
   for_each = var.db_instance_names
-  pool     = var.external_network
+  pool     = data.openstack_networking_network_v2.external_network.name
 }
 
 # Attach floating ip to instance
