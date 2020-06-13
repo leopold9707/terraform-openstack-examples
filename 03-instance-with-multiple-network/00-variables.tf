@@ -3,19 +3,19 @@
 #### GLANCE
 variable "image" {
   type    = string
-  default = "Centos 7"
+  default = "CentOS-7-1907"
 }
 
 #### NEUTRON
 variable "external_network" {
   type    = string
-  default = "external-network"
+  default = "public-provider-97"
 }
 
 # UUID of external gateway
 variable "external_gateway" {
   type    = string
-  default = "f67f0d72-0ddf-11e4-9d95-e1f29f417e2f"
+  default = "e98e5ab1-1775-46bb-8a7b-ae1ced2950ff"
 }
 
 variable "dns_ip" {
@@ -26,14 +26,14 @@ variable "dns_ip" {
 #### VM HTTP parameters ####
 variable "flavor_http" {
   type    = string
-  default = "t2.medium"
+  default = "m1.medium"
 }
 
 variable "network_http" {
   type    = map(string)
   default = {
-    subnet_name = "subnet-http"
-    cidr        = "192.168.1.0/24"
+    subnet_name = "subnet-http-3"
+    cidr        = "33.33.33.0/24"
   }
 }
 
@@ -47,14 +47,14 @@ variable "http_instance_names" {
 #### VM DB parameters ####
 variable "flavor_db" {
   type    = string
-  default = "t2.medium"
+  default = "m1.medium"
 }
 
 variable "network_db" {
   type    = map(string)
   default = {
-    subnet_name = "subnet-db"
-    cidr        = "192.168.2.0/24"
+    subnet_name = "subnet-db-3"
+    cidr        = "33.33.0.0/24"
   }
 }
 
@@ -65,3 +65,7 @@ variable "db_instance_names" {
              "db-instance-3"]
 }
 
+variable "public_key" {
+  type = string
+  default = "jinho_key"
+}

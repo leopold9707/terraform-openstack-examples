@@ -1,14 +1,15 @@
 #### NETWORK CONFIGURATION ####
 
-# Router creation
-resource "openstack_networking_router_v2" "generic" {
-  name                = "router-generic"
-  external_network_id = var.external_gateway
-}
+## Router creation
+#resource "openstack_networking_router_v2" "generic" {
+#  name                = "router-generic"
+#  external_network_id = var.external_gateway
+#}
+##기존 라우터 사용할 것임.
 
 # Network creation
 resource "openstack_networking_network_v2" "generic" {
-  name = "network-generic"
+  name = "network-generic-3"
 }
 
 #### HTTP SUBNET ####
@@ -23,7 +24,7 @@ resource "openstack_networking_subnet_v2" "http" {
 
 # Router interface configuration
 resource "openstack_networking_router_interface_v2" "http" {
-  router_id = openstack_networking_router_v2.generic.id
+  router_id = "79ec61ef-e15b-4ed6-8676-0d09afb95fab"
   subnet_id = openstack_networking_subnet_v2.http.id
 }
 
@@ -39,7 +40,7 @@ resource "openstack_networking_subnet_v2" "db" {
 
 # Router interface configuration
 resource "openstack_networking_router_interface_v2" "db" {
-  router_id = openstack_networking_router_v2.generic.id
+  router_id = "79ec61ef-e15b-4ed6-8676-0d09afb95fab"
   subnet_id = openstack_networking_subnet_v2.db.id
 }
 
