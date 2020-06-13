@@ -7,11 +7,6 @@
 #}
 ##기존 라우터를 사용하면 되기에, 새로 생성하지 않을 것임.
 
-data "openstack_networking_router_v2" "generic" {
-  name = "router-generic"
-}
-
-
 # Network creation
 resource "openstack_networking_network_v2" "generic" {
   name = "network-generic-2"
