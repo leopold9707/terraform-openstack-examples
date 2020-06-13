@@ -9,7 +9,7 @@ data "openstack_images_image_v2" "centos_current" {
 # Create instance
 #
 resource "openstack_compute_instance_v2" "http" {
-  name        = "http-instance"
+  name        = "http-instance-2"
   image_name  = var.image
   flavor_name = var.flavor_http
   key_pair    = openstack_compute_keypair_v2.user_key.name

@@ -8,7 +8,7 @@ resource "openstack_networking_router_v2" "generic" {
 
 # Network creation
 resource "openstack_networking_network_v2" "generic" {
-  name = "network-generic"
+  name = "network-generic-2"
 }
 
 #### HTTP SUBNET ####
