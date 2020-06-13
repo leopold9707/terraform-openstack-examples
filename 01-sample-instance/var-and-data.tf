@@ -20,7 +20,7 @@ variable "flavor_http" {
 variable "network_http" {
   type    = map(string)
   default = {
-    subnet_name = "subnet-http-1"
+    subnet_name = "subnet-http"
     cidr        = "11.11.11.0/24"
   }
 }
