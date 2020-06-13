@@ -6,18 +6,6 @@ variable "image" {
   default = "CentOS-7-1907"
 }
 
-#### NEUTRON
-variable "external_network" {
-  type    = string
-  default = "public-provider-97"
-}
-
-# UUID of external gateway
-variable "external_gateway" {
-  type    = string
-  default = "e98e5ab1-1775-46bb-8a7b-ae1ced2950ff"
-}
-
 variable "dns_ip" {
   type    = list(string)
   default = ["8.8.8.8", "8.8.8.4"]
@@ -32,7 +20,7 @@ variable "flavor_http" {
 variable "network_http" {
   type    = map(string)
   default = {
-    subnet_name = "subnet-http-2"
+    subnet_name = "subnet-http"
     cidr        = "22.22.22.0/24"
   }
 }
@@ -55,3 +43,28 @@ variable "volume_db" {
   default = 30
 }
 
+# Data Source
+
+data "openstack_compute_keypair_v2" "user_key" {
+  name = "jinho_key"
+}
+
+data "openstack_networking_network_v2" "external_network" {
+  name = "public-provider-97"
+}
+
+data "openstack_networking_router_v2" "jinho-router" {
+  name = "jinho-router"
+}
+
+data "openstack_networking_secgroup_v2" "http" {
+  name = "http"
+}
+
+data "openstack_networking_secgroup_v2" "db" {
+  name = "db"
+}
+
+data "openstack_networking_secgroup_v2" "ssh" {
+  name = "ssh"
+}
