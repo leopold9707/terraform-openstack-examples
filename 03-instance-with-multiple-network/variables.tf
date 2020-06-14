@@ -68,11 +68,11 @@ data "openstack_networking_router_v2" "jinho-router" {
 }
 
 data "openstack_networking_secgroup_v2" "http" {
-  name = "http"
+  name = "external"
 }
 
 data "openstack_networking_secgroup_v2" "db" {
-  name = "db"
+  name = "internal"
 }
 
 data "openstack_networking_secgroup_v2" "ssh" {
