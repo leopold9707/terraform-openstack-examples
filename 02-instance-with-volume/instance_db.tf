@@ -1,4 +1,5 @@
-#### INSTANCE DB ####
+#
+## INSTANCE DB ####
 
 # Create instance
 #
@@ -20,7 +21,7 @@ resource "openstack_networking_port_v2" "db" {
   admin_state_up = true
   security_group_ids = [
     data.openstack_networking_secgroup_v2.ssh.id,
-    data.openstack_networking_secgroup_v2.db.id,
+    data.openstack_networking_secgroup_v2.internal.id,
   ]
   fixed_ip {
     subnet_id = openstack_networking_subnet_v2.http.id
