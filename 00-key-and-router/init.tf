@@ -5,14 +5,6 @@ data "openstack_networking_network_v2" "external_gateway" {
   name = "public-provider-97" ##FIXME
 }
 
-### Variable ###
-
-# 사용할 DNS
-variable "dns_ip" {
-  type    = list(string)
-  default = ["8.8.8.8", "8.8.8.4"] ##FIXME
-}
-
 ### Resource ###
 
 # 사용할 키페어
@@ -28,9 +20,9 @@ resource "openstack_networking_router_v2" "router" {
 }
 
 # 3가지 보안그룹 생성
-resource "openstack_compute_secgroup_v2" "http" {
-  name        = "http"
-  description = "Open input http port"
+resource "openstack_compute_secgroup_v2" "external" {
+  name        = "external"
+  description = "Open input external port"
   rule {
     from_port   = 80
     to_port     = 80
@@ -50,9 +42,9 @@ resource "openstack_compute_secgroup_v2" "ssh" {
   }
 }
 
-resource "openstack_compute_secgroup_v2" "db" {
-  name        = "db"
-  description = "Open input db port"
+resource "openstack_compute_secgroup_v2" "internal" {
+  name        = "internal"
+  description = "Open input internal port"
   rule {
     from_port   = 3306
     to_port     = 3306

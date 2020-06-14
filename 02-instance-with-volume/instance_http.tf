@@ -31,7 +31,7 @@ resource "openstack_compute_instance_v2" "http" {
 # Create network port
 resource "openstack_networking_port_v2" "http" {
   name           = "port-instance-http"
-  network_id     = openstack_networking_network_v2.vpc-2.id
+  network_id     = openstack_networking_network_v2.vpc.id
   admin_state_up = true
   security_group_ids = [
     data.openstack_networking_secgroup_v2.ssh.id,
