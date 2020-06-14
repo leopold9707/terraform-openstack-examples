@@ -20,7 +20,7 @@ resource "openstack_networking_port_v2" "http" {
   admin_state_up = true
   security_group_ids = [
     data.openstack_networking_secgroup_v2.ssh.id,
-    data.openstack_networking_secgroup_v2.http.id,
+    data.openstack_networking_secgroup_v2.external.id,
   ]
   fixed_ip {
     subnet_id = openstack_networking_subnet_v2.http.id
