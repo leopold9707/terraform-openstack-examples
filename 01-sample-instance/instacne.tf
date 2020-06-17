@@ -7,12 +7,19 @@ resource "openstack_compute_instance_v2" "http" {
   image_name  = var.image
   flavor_name = var.flavor_http
   key_pair    = data.openstack_compute_keypair_v2.user_key.name
+  personality {
+    file = "/home/centos/personalit_test.txt"
+    content = "test123"
+}
   user_data   = file("scripts/first-boot.sh")
   network {
-    port = openstack_networking_port_v2.http.id
+#    port = openstack_networking_port_v2.http.id
+    name = openstack_networking_network_v2.vpc.name
+    fixed_ip_v4 = "11.11.11.4"
   }
 }
 
+/*
 # Create network port
 resource "openstack_networking_port_v2" "http" {
   name           = "port-instance-http"
@@ -24,8 +31,10 @@ resource "openstack_networking_port_v2" "http" {
   ]
   fixed_ip {
     subnet_id = openstack_networking_subnet_v2.http.id
+#    ip_address = "11.11.11.5"
   }
 }
+*/
 
 # Create floating ip
 resource "openstack_networking_floatingip_v2" "http" {
