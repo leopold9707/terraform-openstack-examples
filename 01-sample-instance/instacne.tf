@@ -9,7 +9,7 @@ resource "openstack_compute_instance_v2" "http" {
   key_pair    = data.openstack_compute_keypair_v2.user_key.name
   personality {
     file = "/home/centos/personalit_test.txt"
-    content = "test123"
+    content = file("scripts/first-boot.sh")
 }
   user_data   = file("scripts/first-boot.sh")
   network {
