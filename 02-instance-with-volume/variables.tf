@@ -46,7 +46,7 @@ variable "volume_db" {
 # Data Source
 
 data "openstack_compute_keypair_v2" "user_key" {
-  name = "jinho_key"
+  name = "my_poc_key"
 }
 
 data "openstack_networking_network_v2" "external_network" {

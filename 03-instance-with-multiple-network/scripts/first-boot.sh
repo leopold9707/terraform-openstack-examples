@@ -1,2 +1,2 @@
 #!/bin/sh
-echo "Hello, World!" >> /tmp/test.txt
+echo "Hello, World!" > /home/centos/test.txt

@@ -9,7 +9,7 @@ data "openstack_networking_network_v2" "external_gateway" {
 
 # 사용할 키페어
 resource "openstack_compute_keypair_v2" "user_key" {
-  name       = "jinho_key"
+  name       = "my_poc_key"
   public_key = file("~/.ssh/id_rsa.pub") ##FIXME
 }
 
