@@ -8,7 +8,7 @@ GUI가 있는 경우 https://www.terraform.io/downloads.html 에서 다운 받�
 
 ```
 $ sudo yum install wget unzip 
-$ sudo wget https://releases.hashicorp.com/terraform/0.12.2/terraform_0.12.29_linux_amd64.zip
+$ sudo wget https://releases.hashicorp.com/terraform/0.12.29/terraform_0.12.29_linux_amd64.zip
 $ sudo unzip ./terraform_0.12.29_linux_amd64.zip –d /usr/local/bin ##다운 받은 .zip 파일은 /usr/local/bin 아래 압축 해제 해준다.
 $ terraform -v ##잘 설치 되었는지 확인한다.
 ```
